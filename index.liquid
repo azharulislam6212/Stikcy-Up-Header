@@ -1,0 +1,50 @@
+
+<style>
+/* stciky-header */
+.main-header{
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+.main-header.header-sticky{
+    position: fixed;
+    left: 0;
+    top: -135px;
+    width: 100%;
+    z-index: 9;
+    -webkit-transition: .5s;
+    transition: .5s;
+    background: #304B54;
+}
+
+.main-header.header-sticky-show{
+    top: 0;
+}
+</style>
+
+  <script>
+        var $window       = $(window);
+        var lastScrollTop = 0;
+        var $header       = $('.main-header');
+        var headerHeight  = $header.outerHeight();
+        
+        $window.scroll(function() {
+        
+            var windowTop  = $window.scrollTop();
+        
+            if ( windowTop >= headerHeight ) {
+              $header.addClass( 'header-sticky' );
+            } else {
+              $header.removeClass( 'header-sticky' );
+              $header.removeClass( 'header-sticky-show' );
+            }
+          
+            if ( $header.hasClass( 'header-sticky' ) ) {
+              if ( windowTop < lastScrollTop ) {
+                $header.addClass( 'header-sticky-show' );
+              } else {
+                $header.removeClass( 'header-sticky-show' );
+              }
+            }
+            lastScrollTop = windowTop;
+        } );
+  </script>
